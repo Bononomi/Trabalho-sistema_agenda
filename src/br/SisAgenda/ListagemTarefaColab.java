@@ -13,6 +13,7 @@ import static javax.swing.JComponent.TOOL_TIP_TEXT_KEY;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+//LISTA TAREFA NA AGENDA DOS COLABORADORES//
 public class ListagemTarefaColab extends javax.swing.JPanel {
 
     private CardLayout cl;
@@ -20,17 +21,18 @@ public class ListagemTarefaColab extends javax.swing.JPanel {
     private Tarefa tarefaGlobal;
 
     public ListagemTarefaColab() {
-         initComponents();
+        initComponents();
 
+        //PAINÉIS
         this.add(painelListagemTarefaColab, "painelListagemTarefa");
         this.add(painelEdiçãoAgendaColab, "painelEdiçaoTarefColab");
 
         this.cl = (CardLayout) this.getLayout();
         this.cl.show(this, "painelListagemTarefa");
 
-       
     }
 
+    //POPULA TABELA COM TODAS AS TAREFAS DOS COLABORADORES NA AGENDA 
     private void popularTabelaTarefa() {
         Dao trf = new Dao();
         List<Tarefa> listaTarefa;
@@ -61,6 +63,7 @@ public class ListagemTarefaColab extends javax.swing.JPanel {
 
     }
 
+    //ATUALIZA A TABLEA COM AS TAREFAS DOS COLABORADORES
     private void limparTabelaTarefa() {
         ((DefaultTableModel) tblTarefa.getModel()).setNumRows(0);
         tblTarefa.updateUI();
@@ -250,26 +253,26 @@ public class ListagemTarefaColab extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+        //SALVA AS INFORMAÇÕES INSERIDAS AO PRESSIONAR O BOTÃO "SALVAR"
         String QualTipoTarefa = "Colaborador";
 
         this.tarefaGlobal.setTitAge(cpTitulo.getText());
         this.tarefaGlobal.setDesAge(cpDescricao.getText());
-        
-        //this.tarefaGlobal.setDataEnt(cpDataEntrega.getText());
-        
-        //provavelmente tenho q mudar o dao do inserir pq nao ocorre nenhuma mudança na data de criaçao
-        //somente na de entrega
+
         Dao dao = new Dao();
         try {
             dao.alterarTarefaColaborador(this.tarefaGlobal);
-            javax.swing.JOptionPane.showMessageDialog(null, "Tarefa alterada com sucesso !");
+            javax.swing.JOptionPane.showMessageDialog(null, "Tarefa alterada com sucesso!");
         } catch (SQLException ex) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Falha ao alterar uma Tarefa !");
+            javax.swing.JOptionPane.showMessageDialog(null, "Falha ao alterar uma tarefa!");
             Logger.getLogger(PainelCadastEquipe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void preencherFormulario(Tarefa tarefa) {
+
+        //EDIÇÃO DA TAREFA DO COLABORADOR
         cpTitulo.setText(tarefa.getTitAge());
         cpDescricao.setText(tarefa.getDesAge());
         cpDataEntrega.setText(tarefa.getDataEnt());
@@ -285,6 +288,8 @@ public class ListagemTarefaColab extends javax.swing.JPanel {
     }//GEN-LAST:event_cpDataEntregaActionPerformed
 
     private void ApagarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApagarBtnActionPerformed
+
+        //DELETA A TAREFA DO COLABORADOR NA AGENDA AO PRESSIONAR O BOTÃO "APAGAR"
         Object[] options = {"Sim", "Não"};
         int opcaoSelecionada = JOptionPane.showOptionDialog(null, "Deseja realmente eliminar esta tarefa ?", "Atenção!", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 
@@ -305,6 +310,8 @@ public class ListagemTarefaColab extends javax.swing.JPanel {
 
     /**/
     private void tblTarefaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTarefaMouseClicked
+
+        //PERMITE EDITAR VALORES AO SELECIONAR A TAREFA DE UM COLABORADOR
         int linha = tblTarefa.getSelectedRow();
 
         if (linha != -1) {
@@ -329,6 +336,8 @@ public class ListagemTarefaColab extends javax.swing.JPanel {
     }//GEN-LAST:event_tblTarefaMouseClicked
 
     private void painelListagemTarefaColabComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_painelListagemTarefaColabComponentShown
+
+        //POPULA AS INFORMAÇÕES NA TABELA DE TAREFAS DE COLABORADORES
         this.popularTabelaTarefa();
     }//GEN-LAST:event_painelListagemTarefaColabComponentShown
 

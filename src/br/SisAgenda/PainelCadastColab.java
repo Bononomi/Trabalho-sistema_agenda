@@ -7,22 +7,20 @@ package br.SisAgenda;
 
 import br.SisAgenda.dao.Dao;
 import br.SisAgenda.modelo.Colaborador;
-import com.sun.org.apache.bcel.internal.generic.CPInstruction;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Aluno
- */
+//CADASTRAR COLABORADOR NO SISTEMA
+
 public class PainelCadastColab extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PainelColab
-     */
+   
     public PainelCadastColab() {
         initComponents();
+        
+        //PAINÉL PRINCIPAL DE CADASTRO DO COLABORADOR COM OS VALORES PADRÕES
+        
         ComboBoxTipoColab.addItem("Administrador");
         ComboBoxTipoColab.addItem("Usuário");
         
@@ -263,6 +261,9 @@ public class PainelCadastColab extends javax.swing.JPanel {
     }//GEN-LAST:event_jLoginColabActionPerformed
 
     private void jButtonCadastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastActionPerformed
+        
+        //CADASTRA TODAS AS INFORMAÇÕES DO COLABORADOR AO PRESSIONAR O BOTÃO "CADASTRAR"
+        
         String TipoCol = (String)ComboBoxTipoColab.getSelectedItem();
         Colaborador Col = new Colaborador();
         Col.setTipoUsuario(TipoCol);
@@ -289,6 +290,10 @@ public class PainelCadastColab extends javax.swing.JPanel {
     }//GEN-LAST:event_jIdentEqpActionPerformed
 
     private void jIdentEqpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jIdentEqpMouseClicked
+        
+        //APAGA AS INFORMAÇÕES PADRÕES CONTIDAS NO CAMPO "ID DA EQUIPE" AO
+        // SELCIONAR O MESMO
+        
         jIdentEqp.setText("");
     }//GEN-LAST:event_jIdentEqpMouseClicked
 

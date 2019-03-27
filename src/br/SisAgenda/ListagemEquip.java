@@ -56,14 +56,14 @@ public class ListagemEquip extends javax.swing.JPanel {
             }
 
         } catch (SQLException ex) {
-                    String msg = "Ocorreu um erro ao obter as equipes do banco de dados!";
+            String msg = "Ocorreu um erro ao obter as equipes do banco de dados!";
             JOptionPane.showMessageDialog(null, msg);
             Logger.getLogger(ListagemEquip.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    //LIMPA A TABLEA COM AS EQUIPES
+    //ATUALIZA A TABLEA COM AS EQUIPES
     private void limparTabela() {
         ((DefaultTableModel) tblEquipe.getModel()).setNumRows(0);
         tblEquipe.updateUI();
@@ -223,9 +223,8 @@ public class ListagemEquip extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+
         //SALVA AS INFORMAÇÕES INSERIDAS AO PRESSIONAR O BOTÃO "SALVAR"
-        
         Equipe eqp = new Equipe();
 
         eqp.setNomEqp(cpNomEquipe.getText());
@@ -245,14 +244,13 @@ public class ListagemEquip extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void painelListagemComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_painelListagemComponentShown
-        
+
         //POPULA AS INFORMAÇÕES NA TABELA EQUIPE
         
         this.popularTabela();
     }//GEN-LAST:event_painelListagemComponentShown
 
-       //EDIÇÃO DA EQUIPE 
-    
+    //EDIÇÃO DA EQUIPE 
     private void preencherFormulario(int codigoEquipe) {
         Dao dao = new Dao();
 
@@ -268,10 +266,10 @@ public class ListagemEquip extends javax.swing.JPanel {
 
         this.id = codigoEquipe;
     }
-        
+
 
     private void tblEquipeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEquipeMouseClicked
-        
+
         //PERMITE EDITAR VALORES AO SELECIONAR UMA EQUIPE
         
         int linha = tblEquipe.getSelectedRow();
@@ -286,9 +284,8 @@ public class ListagemEquip extends javax.swing.JPanel {
     }//GEN-LAST:event_tblEquipeMouseClicked
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
-        
+
         //DELETA A EQUIPE AO PRESSIONAR O BOTÃO "APAGAR"
-        
         Object[] options = {"Sim", "Não"};
         int opcaoSelecionada = JOptionPane.showOptionDialog(null, "Deseja realmente eliminar esta equipe ?", "Atenção!", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 

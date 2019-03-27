@@ -10,25 +10,28 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
+//LISTA TAREFA NA AGENDA DAS EQUIPES//
 public class ListagemTarefaEquip extends javax.swing.JPanel {
 
     private CardLayout cl;
     private int id;
-     private Tarefa tarefaGlobal;
+    private Tarefa tarefaGlobal;
 
     public ListagemTarefaEquip() {
         initComponents();
 
+        //PAINÉIS
         this.add(painelListagemTarefaEqp, "painelListagemTarefaEqp");
         this.add(painelEdiçãoAgendaEquip, "painelEdiçãoAgendaEquip");
-        
+
         this.cl = (CardLayout) this.getLayout();
         this.cl.show(this, "painelListagemTarefaEqp");
-        
+
         this.popularTabelaTarefa();
-       
+
     }
 
+    //POPULA TABELA COM TODAS AS TAREFAS DAS EQUIPES NA AGENDA 
     private void popularTabelaTarefa() {
         Dao trf = new Dao();
         List<Tarefa> listaTarefa;
@@ -43,7 +46,7 @@ public class ListagemTarefaEquip extends javax.swing.JPanel {
                 Tarefa t = listaTarefa.get(i);
                 if (t.getColab() == 0) {
                     lista.add(new Object[]{t.getEquipe(), t.getTitAge(),
-                        t.getDesAge(), t.getDataCri(), t.getDataEnt(),t.getColab()});
+                        t.getDesAge(), t.getDataCri(), t.getDataEnt(), t.getColab()});
                 }
             }
 
@@ -58,8 +61,9 @@ public class ListagemTarefaEquip extends javax.swing.JPanel {
         }
 
     }
-    
-         private void limparTabelaTarefa() {
+
+    //ATUALIZA A TABLEA COM AS TAREFAS DAS EQUIPES
+    private void limparTabelaTarefa() {
         ((DefaultTableModel) TblTarefEqp.getModel()).setNumRows(0);
         TblTarefEqp.updateUI();
     }
@@ -235,15 +239,13 @@ public class ListagemTarefaEquip extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+        //SALVA AS INFORMAÇÕES INSERIDAS AO PRESSIONAR O BOTÃO "SALVAR"
         String QualTipoTarefa = "Equipe";
-        
+
         this.tarefaGlobal.setTitAge(cpTitulo.getText());
         this.tarefaGlobal.setDesAge(cpDescricao.getText());
-        
-        //this.tarefaGlobal.setDataEnt(cpDataEntrega.getText());
-        
-        //provavelmente tenho q mudar o dao do inserir pq nao ocorre nenhuma mudança na data de criaçao
-        //somente na de entrega
+
         Dao dao = new Dao();
         try {
             dao.alterarTarefaEquipe(this.tarefaGlobal);
@@ -252,16 +254,18 @@ public class ListagemTarefaEquip extends javax.swing.JPanel {
             javax.swing.JOptionPane.showMessageDialog(null, "Falha ao alterar uma Tarefa !");
             Logger.getLogger(PainelCadastEquipe.class.getName()).log(Level.SEVERE, null, ex);
         }
-                                             
-        
+
+
     }//GEN-LAST:event_btnSalvarActionPerformed
-        private void preencherFormulario(Tarefa tarefa) {
+    private void preencherFormulario(Tarefa tarefa) {
+
+        //EDIÇÃO DA TAREFA DAS EQUIPES
         cpTitulo.setText(tarefa.getTitAge());
         cpDescricao.setText(tarefa.getDesAge());
         cpDataEntrega.setText(tarefa.getDataEnt());
         this.tarefaGlobal = tarefa;
     }
-        
+
     private void cpTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpTituloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cpTituloActionPerformed
@@ -271,6 +275,8 @@ public class ListagemTarefaEquip extends javax.swing.JPanel {
     }//GEN-LAST:event_cpDataEntregaActionPerformed
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
+
+        //DELETA A TAREFA DA EQUIPE NA AGENDA AO PRESSIONAR O BOTÃO "APAGAR"
         Object[] options = {"Sim", "Não"};
         int opcaoSelecionada = javax.swing.JOptionPane.showOptionDialog(null, "Deseja realmente eliminar esta tarefa ?", "Atenção!", javax.swing.JOptionPane.DEFAULT_OPTION, javax.swing.JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 
@@ -290,9 +296,8 @@ public class ListagemTarefaEquip extends javax.swing.JPanel {
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void TblTarefEqpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblTarefEqpMouseClicked
-        
-        
-        
+
+        //PERMITE EDITAR VALORES AO SELECIONAR A TAREFA DE UMA EQUIPE
         int linha = TblTarefEqp.getSelectedRow();
 
         if (linha != -1) {
@@ -317,7 +322,9 @@ public class ListagemTarefaEquip extends javax.swing.JPanel {
     }//GEN-LAST:event_TblTarefEqpMouseClicked
 
     private void TblTarefEqpComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_TblTarefEqpComponentShown
-       this.popularTabelaTarefa();
+
+        //POPULA AS INFORMAÇÕES NA TABELA DE TAREFAS DE EQUIPES 
+        this.popularTabelaTarefa();
     }//GEN-LAST:event_TblTarefEqpComponentShown
 
 
