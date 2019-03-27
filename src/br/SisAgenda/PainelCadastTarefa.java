@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+//CADASTRAR TAREFA
 public class PainelCadastTarefa extends javax.swing.JPanel {
 
     public PainelCadastTarefa() {
@@ -179,9 +180,11 @@ public class PainelCadastTarefa extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+        //SALVA AS INFORMAÇÕES AO CLICAR NO BOTÃO "SALVAR"
         Tarefa tr = new Tarefa();
         String QualTipoTarefa = jComboBoxAddPara.getSelectedItem().toString();
-       
+
         tr.setTitAge(cpTitulo.getText());
         tr.setDesAge(cpDescricao.getText());
 
@@ -201,7 +204,7 @@ public class PainelCadastTarefa extends javax.swing.JPanel {
         tr.setDataEnt(cpDataEntrega.getText());
         tr.setTitAge(cpTitulo.getText());
         tr.setDesAge(cpDescricao.getText());
-        
+
         Dao dao = new Dao();
         try {
             dao.inserir(tr);
@@ -224,6 +227,7 @@ public class PainelCadastTarefa extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxAddParaActionPerformed
 
+    //CAIXA DE SELEÇÃO PARA ESCOLHER ENTRE COLABORADOR OU EQUIPE
     private void jComboBoxAddParaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxAddParaItemStateChanged
         String QualTipoTarefa = jComboBoxAddPara.getSelectedItem().toString();
         if (QualTipoTarefa.equals("Colaborador")) {
