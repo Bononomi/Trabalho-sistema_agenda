@@ -12,10 +12,11 @@ import java.util.logging.Logger;
 import static javax.swing.JComponent.TOOL_TIP_TEXT_KEY;
 import javax.swing.table.DefaultTableModel;
 
+//LISTA TODOS OS COLABORADORES E PERRMITE EDITAR OS MESMO//
 public class PainelListagemColab extends javax.swing.JPanel {
 
     private CardLayout cl;
-    //private int codigoCliente;
+
     private int CodColab;
 
     public PainelListagemColab() {
@@ -33,6 +34,7 @@ public class PainelListagemColab extends javax.swing.JPanel {
 
     }
 
+    //POPULA A TABELA COLABORADOR 
     private void popularTabelaColaborador() {
         Dao col = new Dao();
         List<Colaborador> listaColaborador;
@@ -63,6 +65,7 @@ public class PainelListagemColab extends javax.swing.JPanel {
 
     }
 
+    //ATUALIZA A TABELA NO PAINEL LISTAGEM
     private void limparTabelaColaborador() {
         ((DefaultTableModel) tblColab.getModel()).setNumRows(0);
         tblColab.updateUI();
@@ -361,7 +364,7 @@ public class PainelListagemColab extends javax.swing.JPanel {
     }//GEN-LAST:event_jNomeColabActionPerformed
 
     private void ComboBoxTipoColabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxTipoColabActionPerformed
-  
+
     }//GEN-LAST:event_ComboBoxTipoColabActionPerformed
 
     private void jLoginColabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginColabActionPerformed
@@ -373,6 +376,8 @@ public class PainelListagemColab extends javax.swing.JPanel {
     }//GEN-LAST:event_jSenhaColabActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+        //SALVA AS INFORMAÇÕES AO CLICAR NO BOTÃO "SALVAR"
         String TipoCol = (String) ComboBoxTipoColab.getSelectedItem();
         Colaborador Col = new Colaborador();
         Col.setTipoUsuario(TipoCol);
@@ -401,6 +406,7 @@ public class PainelListagemColab extends javax.swing.JPanel {
         this.popularTabelaColaborador();
     }//GEN-LAST:event_PListagemColabComponentShown
 
+    //EDITA AS INFORMAÇÕES DO COLABORADOR
     private void preencherFormulario(int codigoCol) {
         Dao dao = new Dao();
 
@@ -426,6 +432,8 @@ public class PainelListagemColab extends javax.swing.JPanel {
 
     }//GEN-LAST:event_PListagemColabMouseClicked
 
+    //AO CLICAR DIRECIONA A UM PAINEL DE EDIÇÃO DO COLABORADOR
+
     private void tblColabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblColabMouseClicked
         int linha = tblColab.getSelectedRow();
 
@@ -440,6 +448,8 @@ public class PainelListagemColab extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblColabMouseClicked
 
+    //APAGA A INFORMAÇÃO SELECIONADA AO CLICAR NO BOTÃO "APAGAR"
+    
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
         Object[] options = {"Sim", "Não"};
         int opcaoSelecionada = javax.swing.JOptionPane.showOptionDialog(null, "Deseja realmente eliminar este colaborador ?", "Atenção!", javax.swing.JOptionPane.DEFAULT_OPTION, javax.swing.JOptionPane.WARNING_MESSAGE, null, options, options[0]);
@@ -460,6 +470,8 @@ public class PainelListagemColab extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnApagarActionPerformed
 
+    //NÃO SABEMOS OQUE FAZ MAS TEMOS MEDO DE APAGAR
+        
     private void jIdentEqpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jIdentEqpMouseClicked
         jIdentEqp.setText("");
     }//GEN-LAST:event_jIdentEqpMouseClicked
